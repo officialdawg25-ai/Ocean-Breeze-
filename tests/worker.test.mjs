@@ -24,7 +24,7 @@ test('Mobile and accessibility affordances exist', () => {
   assert.match(html, /aria-expanded/);
   assert.match(html, /prefers-reduced-motion/);
   assert.match(html, /aria-live="polite"/);
-  assert.match(html, /contact-intro h2\\{font:400/);
+  assert.ok(html.includes('.contact-intro h2{font:400'));
 });
 
 test('Enquiry form is wired to the Worker endpoint', () => {
