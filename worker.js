@@ -10,11 +10,12 @@ const HTML = String.raw`<!doctype html>
 <meta property="og:description" content="Discover Ocean Breeze purified water. A clearer kind of refreshment.">
 <meta property="og:site_name" content="Ocean Breeze">
 <meta name="twitter:card" content="summary">
+<meta name="robots" content="index,follow">
 <link rel="canonical" href="https://ocean-breeze.officialdawg25.workers.dev/">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Ocean Breeze","url":"https://ocean-breeze.officialdawg25.workers.dev/","description":"A beverage brand currently focused on purified water."}</script>
 <title>Ocean Breeze — Clarity in every moment</title>
 <style>
-:root{color-scheme:dark;--ink:#061a27;--deep:#092b3d;--deep2:#0d3b50;--sea:#14556a;--aqua:#a2e4df;--mist:#d9eeeb;--paper:#f2f6f1;--muted:#a8c0c6;--line:rgba(211,241,237,.18);--serif:Georgia,"Times New Roman",serif;--sans:ui-sans-serif,Helvetica,sans-serif;--ease:cubic-bezier(.2,.75,.25,1)}
+:root{color-scheme:dark;--ink:#061a27;--deep:#092b3d;--deep2:#0d3b50;--sea:#14556a;--aqua:#a2e4df;--mist:#d9eeeb;--paper:#f2f6f1;--muted:#a8c0c6;--line:rgba(211,241,237,.18);--serif:Georgia,"Times New Roman",serif;--sans:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--ease:cubic-bezier(.2,.75,.25,1)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:88px}
 body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -339,7 +340,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname === "/health") return new Response("Ocean Breeze Worker healthy", { headers: { "content-type": "text/plain; charset=utf-8", ...securityHeaders } });
-    if (url.pathname === "/robots.txt") return new Response("User-agent: *\\nAllow: /\\nSitemap: https://ocean-breeze.officialdawg25.workers.dev/sitemap.xml\\n", { headers: { "content-type": "text/plain; charset=utf-8", "cache-control": "public, max-age=3600", ...securityHeaders } });
+    if (url.pathname === "/robots.txt") return new Response("User-agent: *\nAllow: /\nSitemap: https://ocean-breeze.officialdawg25.workers.dev/sitemap.xml\n", { headers: { "content-type": "text/plain; charset=utf-8", "cache-control": "public, max-age=3600", ...securityHeaders } });
     if (url.pathname === "/sitemap.xml") return new Response('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://ocean-breeze.officialdawg25.workers.dev/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url></urlset>', { headers: { "content-type": "application/xml; charset=utf-8", "cache-control": "public, max-age=3600", ...securityHeaders } });
     if (url.pathname === "/api/enquiries") {
       if (request.method !== "POST") return json({ error: "Method not allowed." }, 405);
