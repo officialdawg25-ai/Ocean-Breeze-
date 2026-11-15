@@ -83,8 +83,9 @@ test('Admin authorisation uses trusted app metadata and not user metadata', () =
 });
 
 test('Inline browser scripts parse without syntax errors', () => {
-  const scripts = [...html.matchAll(/<script(?:\\s[^>]*)?>([\\s\\S]*?)<\\/script>/gi)]
-    .map((match) => match[1])
+  const scripts = [...html.matchAll(/<script([^>]*)>([\\s\\S]*?)<\\/script>/gi)]
+    .filter((match) => !/application\\/ld\\+json/i.test(match[1]))
+    .map((match) => match[2])
     .filter((content) => content.trim().length > 0);
   assert.ok(scripts.length > 0, 'expected at least one inline browser script');
   for (const content of scripts) assert.doesNotThrow(() => new Script(content));
