@@ -1,7 +1,7 @@
 name: Ocean Breeze Worker QA
 on:
   push:
-    branches: [main, "implementation/**"]
+    branches: [main, "implementation/**", "chore/**"]
   pull_request:
     branches: [main]
   workflow_dispatch:
