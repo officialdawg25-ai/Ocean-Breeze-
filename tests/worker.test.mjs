@@ -41,6 +41,9 @@ test('Server validates input and returns non-cacheable JSON', () => {
   assert.match(source, /message\.length < 10/);
   assert.match(source, /"cache-control": "no-store"/);
   assert.match(source, /content-security-policy/);
+  assert.match(source, /robots\\.txt/);
+  assert.match(source, /sitemap\\.xml/);
+  assert.doesNotMatch(source, /Arial/);
 });
 
 test('No private Supabase key is embedded in source', () => {
