@@ -1,21 +1,29 @@
 # Ocean Breeze — immersive brand experience
 
-A premium, responsive web experience for Ocean Breeze, a beverage brand currently focused on purified water.
+A responsive premium website for Ocean Breeze, a beverage brand currently focused on purified water. The existing Cloudflare Worker architecture is retained.
 
-## Current scope
-- Cinematic bottle-centered hero composition with original inline SVG bottle artwork.
-- Editorial brand-story section and purified-water product showcase.
-- Future-ready brand expansion section, worded cautiously.
-- Responsive mobile layout, keyboard-accessible anchor navigation, and reduced-motion support.
-- Lightweight IntersectionObserver reveal motion.
-- Page title, description, Open Graph metadata, theme color.
-- Cloudflare Worker serves the experience and a `/health` plain-text endpoint.
+## Experience
+- Cinematic, full-height brand introduction with custom glass-like bottle concept artwork.
+- Editorial brand discovery, purified-water feature, signature everyday moment, future direction and enquiry conversion sections.
+- Responsive desktop, tablet and portrait mobile compositions, including an accessible mobile navigation.
+- Reduced-motion support, progressive reveal motion, keyboard focus states, semantic structure and SEO/Open Graph metadata.
+- No external runtime dependencies or third-party asset requests.
 
-## Content integrity
-The site intentionally does not claim bottle formats, source, mineral composition, certifications, health benefits, pricing, supply/distribution availability, testimonials, or contact details. Update those only when confirmed by Ocean Breeze.
+## Enquiries
+- `POST /api/enquiries` validates and persists customer enquiries to Supabase.
+- Required fields: name, email, enquiry type and message; phone is optional.
+- Honeypot, same-origin validation, request-size checks, Worker validation and Postgres constraints.
+- Supabase RLS is enabled. The anonymous role receives INSERT only; it cannot read, update or delete enquiries.
+- Required Worker bindings: `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY`. The publishable key is designed for public use and is not a service-role credential.
+
+## Local validation
+- `node --check worker.js`
+- `node --test tests/worker.test.mjs`
+
+GitHub Actions runs these checks for pushes and pull requests.
+
+## Content integrity and launch dependencies
+The site does not claim packaging sizes, source, mineral composition, certifications, health benefits, pricing, stock, delivery areas, testimonials, or achievements. The bottle visual is a concept illustration, not confirmed final packaging. Before full commercial launch, supply approved product photography and specifications, confirmed contact and social channels, and a reviewed POPIA privacy notice and retention policy.
 
 ## Deployment
-The entrypoint is `worker.js`, an ES module Worker. The existing Cloudflare Worker script is named `ocean-breeze`. Compatibility date currently set to `2026-11-15`.
-
-## QA notes
-Responsive and reduced-motion behaviors are authored in CSS. A local package/build pipeline is not yet configured because this repository was initially empty and the first delivery is a self-contained Worker HTML experience. Live browser visual inspection and independent external HTTP verification remain outstanding in the execution environment.
+Cloudflare Worker entrypoint: `worker.js`; script: `ocean-breeze`.
