@@ -41,8 +41,8 @@ test('Server validates input and returns non-cacheable JSON', () => {
   assert.match(source, /message\.length < 10/);
   assert.match(source, /"cache-control": "no-store"/);
   assert.match(source, /content-security-policy/);
-  assert.match(source, /robots\\.txt/);
-  assert.match(source, /sitemap\\.xml/);
+  assert.ok(source.includes('robots.txt'));
+  assert.ok(source.includes('sitemap.xml'));
   assert.doesNotMatch(source, /Arial/);
 });
 
