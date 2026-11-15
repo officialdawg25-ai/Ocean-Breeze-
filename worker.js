@@ -1,4 +1,4 @@
-const HTML = String.raw\`<!doctype html>
+const HTML = String.raw`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -317,7 +317,7 @@ OCEAN BREEZE
 })();
 </script>
 </body>
-</html>\`;
+</html>`;
 const json = (data, status = 200) => new Response(JSON.stringify(data), {
   status,
   headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store", "x-content-type-options": "nosniff" }
