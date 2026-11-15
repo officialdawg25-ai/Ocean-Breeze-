@@ -101,7 +101,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 .future-note{display:block;margin-top:28px;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#66858a}
 .contact{background:radial-gradient(ellipse at 50% 0%,rgba(24,91,111,.6),transparent 60%),#061a27;padding:clamp(88px,10vw,140px) clamp(22px,9vw,144px)}
 .contact-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:9vw;max-width:1300px;margin:auto}
-.contact-intro h2{font-size:clamp(42px,5.4vw,72px);max-width:520px}
+.contact-intro h2{font:400 clamp(42px,5.4vw,72px)/1.02 var(--serif);letter-spacing:-.055em;max-width:520px}
 .contact-intro p{max-width:400px;color:#a9c1c7;font-size:13px;line-height:1.9}
 .contact-aside{margin-top:42px;color:#7fa2ad;font-size:9px;line-height:1.8;letter-spacing:.08em}
 .enquiry-form{border-top:1px solid var(--line);padding-top:28px}
