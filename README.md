@@ -67,11 +67,11 @@ The product bucket `ocean-breeze-products` is public-read for published product 
 
 ### Database objects
 
-The product studio migration is `supabase/migrations/20261115083000_create_ocean_breeze_product_studio.sql`. It creates product, collection, art-direction, 360-asset, information, media, experience-settings and activity tables with RLS, plus the product asset bucket.
+The product studio migrations are `supabase/migrations/20261115083000_create_ocean_breeze_product_studio.sql` and `supabase/migrations/20261115083500_tune_product_studio_rls.sql`. They create product, collection, art-direction, 360-asset, information, media, experience-settings and activity tables with RLS, plus the product asset bucket. The follow-up migration separates public SELECT from admin writes and wraps JWT lookups to avoid repeated per-row evaluation.
 
 ### Known launch dependencies
 
-- The database currently has no verified product catalogue. Add actual products through Product Studio.
+- The database currently has no verified product catalogue. Add actual products through Product Studio. Until then, the existing bottle concept artwork remains visible and is explicitly labelled as concept art, not confirmed retail packaging.
 - No approved retail packaging photography or true 360-degree frame sets were present at implementation time. Upload approved assets before publishing a product as a full 360° experience.
 - Product sizes, water source, mineral content, purification details, nutritional information, packaging claims and certifications must be confirmed before entry.
 - Admin account provisioning requires an explicit trusted app-metadata role assignment as documented above.
