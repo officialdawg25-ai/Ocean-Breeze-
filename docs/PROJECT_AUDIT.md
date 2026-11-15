@@ -1,47 +1,77 @@
-# Ocean Breeze — discovery and implementation record
+# Ocean Breeze — discovery, implementation and release record
 
-## Verified project state before this implementation
+## Phase 0 — verified discovery
 
-- Repository: `officialdawg25-ai/Ocean-Breeze-`; default branch: `main`.
-- Initial repository content was a single self-contained Cloudflare Worker entrypoint (`worker.js`) and a short README.
-- Existing production Worker script: `ocean-breeze`; workers.dev subdomain enabled.
-- Existing Worker had no bindings, routes/domains, package manifest, framework build, or test pipeline.
+- Repository: `officialdawg25-ai/Ocean-Breeze-`; production branch: `main`.
+- The original project was a minimal, self-contained Cloudflare Worker website, not a React/Vite application. The existing Worker architecture was retained; no unnecessary framework rebuild or runtime dependencies were introduced.
+- Existing Cloudflare Worker script: `ocean-breeze`; workers.dev subdomain enabled.
 - Supabase project: `rrvbhdpgcqhdlajlfnkd`, active PostgreSQL 17 project in `eu-central-1`.
 - The public schema had no application tables before the enquiry migration.
-- Existing product information confirmed in the conversation: Ocean Breeze is a beverage product brand currently focused on purified water, with possible future expansion. No verified packaging sizes, source, certifications, prices, distribution coverage, contact channels, or customer claims were available.
+- Confirmed business description: Ocean Breeze is a beverage product brand currently focused on purified water, with future expansion contemplated. No verified bottle formats, water source, technical specifications, certifications, prices, distribution coverage, contact channels, testimonials or health claims were supplied.
 
-## Implementation decisions
+## Implemented experience
 
-- Keep the current Cloudflare Worker architecture; no framework rewrite or unnecessary dependencies.
-- Use a custom bottle concept illustration because final retail packaging artwork and product photography were not supplied. The page explicitly describes it as a concept visual.
-- Present only purified water as the current offering. Future beverage and health-oriented categories are described as future possibilities, not available products.
-- Add a server-mediated enquiry endpoint backed by Supabase. The publishable key is a public key and is passed as a Worker binding; no service-role or secret key is used.
-- The enquiry table enables RLS and grants anonymous users INSERT only. Anonymous users have no SELECT, UPDATE, or DELETE grants.
-- Add validation at the Worker and database layers, a honeypot field, strict same-origin checking, security headers, and no-store API responses.
-- Do not invent email addresses, phone numbers, social accounts, business locations, product claims, or testimonials.
+- Full-viewport cinematic hero with a custom glass-like bottle concept, atmospheric oceanic lighting, subtle orbital depth and restrained motion.
+- Editorial brand discovery section; purified-water product feature; signature everyday-use story; future-direction section; conversion/enquiry section; restrained footer.
+- Custom midnight-ocean, sea-glass and ivory color system with editorial serif headings and a contemporary system UI sans stack. No external font or runtime dependencies.
+- Responsive desktop, tablet and portrait Android compositions; mobile navigation with keyboard escape support, expanded state and inert handling.
+- Entrance/reveal motion, slow bottle movement, subtle background motion and reduced-motion fallback.
+- Semantic HTML, heading hierarchy, skip link, focus-visible states, labelled form controls, status announcement, image descriptions and accessible navigation.
+- SEO title/description, Open Graph metadata, canonical URL, Organization structured data, robots metadata, `/robots.txt` and `/sitemap.xml`.
+- Security headers, strict same-origin enquiry validation, payload size validation, honeypot, server-side field validation and non-cacheable API responses.
+- Current product focus remains purified water only. The bottle visual is a concept illustration and is not represented as final packaging.
 
-## Known constraints
+## Enquiry implementation
 
-- No actual product photography, final packaging design, verified technical product specification, price list, or fulfilment/distribution information was supplied.
-- No legal privacy notice details or designated privacy contact were supplied. The form shows a concise collection notice; a complete POPIA privacy notice and retention policy still require the business's verified responsible-party details and legal review.
-- No independent browser automation or device farm was configured at discovery. CI provides syntax and structural smoke tests; it does not substitute for a full visual browser inspection.
+- `POST /api/enquiries` validates and persists enquiries to Supabase.
+- Required fields: name, email, enquiry type and message; phone is optional.
+- Supabase RLS is enabled. Anonymous role can INSERT only; it cannot SELECT, UPDATE or DELETE.
+- Supabase publishable key is stored as a Cloudflare secret binding. The project URL is a Worker binding. No service-role key is used.
+- Hosted migration history is aligned with repository migration filenames:
+  - `20261115054521_create_public_enquiries`
+  - `20261115054532_restrict_public_helper_execution`
+- The pre-existing `public.rls_auto_enable()` helper's anonymous/public execution was revoked.
+- Enquiries are available for manual review in Supabase. No email notification or admin inbox has been configured.
 
-## Post-implementation verification
+## Verification evidence
 
-- The new Worker version uploaded successfully to Cloudflare and was assigned 100% traffic.
-- Cloudflare Browser Rendering loaded the production URL at desktop (1440 × 1000) and portrait mobile (360 × 800) viewports. The rendered page title, main sections, mobile navigation, enquiry form and accessibility tree were returned successfully.
-- GitHub Actions completed both checks successfully: `node --check worker.js` and `node --test tests/worker.test.mjs`.
-- Supabase verification confirmed RLS enabled, one insert policy, anonymous INSERT allowed, anonymous SELECT/UPDATE/DELETE denied, and anonymous execution of the pre-existing `rls_auto_enable()` helper revoked.
+### Automated checks
+- GitHub Actions workflow: `Ocean Breeze Worker QA`.
+- Node 22 `node --check worker.js`: passed.
+- `node --test tests/worker.test.mjs`: passed (6 smoke tests).
+- Cloudflare accepted and deployed the Worker module successfully; no bundler/build step is required for this single-file Worker.
+
+### Live browser checks
+- Production page rendered successfully through Cloudflare Browser Rendering.
+- Visual screenshots reviewed at desktop 1440 × 1000, tablet portrait 768 × 1024, and narrow Android portrait 360 × 800. The enquiry section was also inspected at desktop size.
+- Browser accessibility tree confirmed the primary page structure, navigation, headings, product concept, enquiry controls and submit button.
+- Mobile navigation interaction verified: `aria-expanded` changed to true when opened.
+- `/health` returned the expected healthy response.
+- `/robots.txt` returned a correctly line-separated crawler policy and sitemap location.
+- `/sitemap.xml` returned HTTP 200.
+- Invalid enquiry POST returned HTTP 400; GET to the POST-only endpoint returned HTTP 405.
+- A clearly labelled temporary QA enquiry was submitted through the live browser form and returned HTTP 201 with the success message. The matching database row was verified, then deleted. A final database count confirmed zero remaining QA rows and no customer enquiries were fabricated or left behind.
 - Supabase security and performance advisors returned no lints after the helper restriction.
-- The Worker has the Supabase project URL as a plain-text binding and the publishable API key as a Cloudflare secret binding. No service-role key is used.
-- Public form submission has not been end-to-end tested with a valid customer record, to avoid inserting fabricated test enquiries. Browser rendering verified the form and the endpoint is compiled/deployed; a valid live submission still needs owner-led verification.
-- The website's enquiries are stored in Supabase for manual review. Email notifications and an admin inbox are not configured.
-- Production screenshots were visually reviewed at desktop 1440 × 1000, tablet portrait 768 × 1024 and narrow Android portrait 360 × 800. The layouts retained their hierarchy and the primary CTAs remained visible; tablet CTA wrapping is intentional at that width.
-- Browser automation verified the mobile navigation opens (aria-expanded changes to true), malformed enquiry POSTs return HTTP 400 without creating records, and GET requests to the POST-only endpoint return HTTP 405.
-- A valid customer enquiry was deliberately not submitted as a test, to avoid inserting fabricated customer data. A real owner-led submission remains the final end-to-end check.
+- SQL privilege verification confirmed: RLS enabled; anon INSERT true; anon SELECT/UPDATE/DELETE false; anon execution of `rls_auto_enable()` false.
 
 ## Production release
 
-- Repository pull request #2 was merged to `main`; merge commit: `81b3c40f924f6470d332f30c81492cc53a805200`.
-- The deployed Cloudflare Worker script is `ocean-breeze`; deployment for the complete experience: `8d9f1b1bda6d4672813725fdbb7009e4`.
+- Repository PR #2: full experience and enquiry foundation, merged.
+- PR #3: accurate enquiry confirmation and operations notes, merged.
+- PR #5: migration alignment and strict same-origin hardening, merged.
+- PR #8: system typography, crawler metadata and SEO endpoints, merged.
+- Final production Worker script: `ocean-breeze`.
+- Final Worker deployment ID: `d8bc9fbd-58a6-492e-a075-938f5ef49aae`.
+- Final Worker version ID: `f9dab0e3-de69-4d4f-9735-5e9ed996ca7d`, deployed to 100% traffic.
 - Production URL: `https://ocean-breeze.officialdawg25.workers.dev/`.
+
+## Remaining launch dependencies / limits
+
+- Approved retail bottle photography and final packaging artwork are still needed; current bottle art is clearly a concept.
+- Confirmed sizes, water source, technical specifications, certifications, pricing, stock and delivery/distribution details must be supplied before publication.
+- A complete POPIA privacy notice, responsible-party contact and retention policy require verified business details and appropriate legal review before real customer enquiry collection.
+- Enquiries are stored in Supabase for manual review; email notifications and a dedicated admin inbox remain unimplemented.
+- No verified phone, email, physical address or social links were supplied, so none were invented.
+- Screenshots were taken in browser emulation; physical-device testing, a full Lighthouse/Core Web Vitals audit and high-volume spam/rate-limit testing remain partial.
+- No custom domain was supplied or configured; the verified public deployment is the workers.dev URL.
+- An interactive product-switching catalogue was intentionally not fabricated because only one current product category was verified.
