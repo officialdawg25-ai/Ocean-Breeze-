@@ -32,6 +32,7 @@ test('Enquiry form is wired to the Worker endpoint', () => {
   assert.match(source, /url\.pathname === "\/api\/enquiries"/);
   assert.match(source, /SUPABASE_PUBLISHABLE_KEY/);
   assert.match(source, /company_website/);
+  assert.match(source, /origin !== url\.origin/);
 });
 
 test('Server validates input and returns non-cacheable JSON', () => {

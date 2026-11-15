@@ -342,7 +342,7 @@ export default {
     if (url.pathname === "/api/enquiries") {
       if (request.method !== "POST") return json({ error: "Method not allowed." }, 405);
       const origin = request.headers.get("Origin");
-      if (origin && origin !== url.origin) return json({ error: "Request origin not allowed." }, 403);
+      if (origin !== url.origin) return json({ error: "Request origin not allowed." }, 403);
       if (!request.headers.get("content-type")?.toLowerCase().includes("application/json")) return json({ error: "Content type must be application/json." }, 415);
       const declaredLength = Number(request.headers.get("content-length") || 0);
       if (declaredLength > 12000) return json({ error: "The message is too large." }, 413);

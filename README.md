@@ -21,7 +21,7 @@ A responsive premium website for Ocean Breeze, a beverage brand currently focuse
 - `node --check worker.js`
 - `node --test tests/worker.test.mjs`
 
-GitHub Actions runs these checks for pushes and pull requests.
+GitHub Actions runs these checks for pushes and pull requests on the main, implementation and maintenance branches.
 
 ## Content integrity and launch dependencies
 The site does not claim packaging sizes, source, mineral composition, certifications, health benefits, pricing, stock, delivery areas, testimonials, or achievements. The bottle visual is a concept illustration, not confirmed final packaging. Before full commercial launch, supply approved product photography and specifications, confirmed contact and social channels, and a reviewed POPIA privacy notice and retention policy.
