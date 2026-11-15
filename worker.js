@@ -312,7 +312,7 @@ OCEAN BREEZE
    const response=await fetch('/api/enquiries',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({...payload,company_website:''})});
    const result=await response.json().catch(()=>({}));
    if(!response.ok)throw new Error(result.error||'We could not send your enquiry right now.');
-   form.reset();status.textContent='Thank you. Your enquiry has been received. Ocean Breeze will follow up using the details you provided.';
+   form.reset();status.textContent='Your enquiry has been received. Thank you for contacting Ocean Breeze.';
   }catch(error){status.classList.add('error');status.textContent=error.message||'Something went wrong. Please try again in a moment.'}
   finally{submit.disabled=false;submit.innerHTML='Send enquiry <span aria-hidden="true">↗</span>'}
  });
