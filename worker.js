@@ -620,7 +620,14 @@ export default {
         return json({ error: "The enquiry service is temporarily unavailable. Please try again later." }, 502);
       }
     }
-    if (url.pathname === "/admin" || url.pathname === "/admin/" || url.pathname.startsWith("/products/")) return new Response(HTML, { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store", ...securityHeaders } });
+    const normalizedPath = url.pathname.replace(/\/+$/, "") || "/";
+    if (normalizedPath === "/admin") {
+      const adminHTML = HTML
+        .replace("<body>", '<body class="ob-admin-mode">')
+        .replace('<div class="ob-admin ob-admin-hidden" id="ob-admin">', '<div class="ob-admin" id="ob-admin">');
+      return new Response(adminHTML, { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store", "x-ocean-breeze-route": "admin", ...securityHeaders } });
+    }
+    if (url.pathname.startsWith("/products/")) return new Response(HTML, { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store", ...securityHeaders } });
     if (url.pathname !== "/" && url.pathname !== "/index.html") return new Response("Not found", { status: 404, headers: securityHeaders });
     return new Response(HTML, {
       headers: {
