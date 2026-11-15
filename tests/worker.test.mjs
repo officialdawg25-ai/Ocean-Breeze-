@@ -24,6 +24,7 @@ test('Mobile and accessibility affordances exist', () => {
   assert.match(html, /aria-expanded/);
   assert.match(html, /prefers-reduced-motion/);
   assert.match(html, /aria-live="polite"/);
+  assert.ok(html.includes('.contact-intro h2{font:400'));
 });
 
 test('Enquiry form is wired to the Worker endpoint', () => {
@@ -40,6 +41,9 @@ test('Server validates input and returns non-cacheable JSON', () => {
   assert.match(source, /message\.length < 10/);
   assert.match(source, /"cache-control": "no-store"/);
   assert.match(source, /content-security-policy/);
+  assert.ok(source.includes('robots.txt'));
+  assert.ok(source.includes('sitemap.xml'));
+  assert.doesNotMatch(source, /Arial/);
 });
 
 test('No private Supabase key is embedded in source', () => {

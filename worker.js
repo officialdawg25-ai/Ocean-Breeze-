@@ -10,11 +10,12 @@ const HTML = String.raw`<!doctype html>
 <meta property="og:description" content="Discover Ocean Breeze purified water. A clearer kind of refreshment.">
 <meta property="og:site_name" content="Ocean Breeze">
 <meta name="twitter:card" content="summary">
+<meta name="robots" content="index,follow">
 <link rel="canonical" href="https://ocean-breeze.officialdawg25.workers.dev/">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Ocean Breeze","url":"https://ocean-breeze.officialdawg25.workers.dev/","description":"A beverage brand currently focused on purified water."}</script>
 <title>Ocean Breeze — Clarity in every moment</title>
 <style>
-:root{color-scheme:dark;--ink:#061a27;--deep:#092b3d;--deep2:#0d3b50;--sea:#14556a;--aqua:#a2e4df;--mist:#d9eeeb;--paper:#f2f6f1;--muted:#a8c0c6;--line:rgba(211,241,237,.18);--serif:Georgia,"Times New Roman",serif;--sans:Arial,Helvetica,sans-serif;--ease:cubic-bezier(.2,.75,.25,1)}
+:root{color-scheme:dark;--ink:#061a27;--deep:#092b3d;--deep2:#0d3b50;--sea:#14556a;--aqua:#a2e4df;--mist:#d9eeeb;--paper:#f2f6f1;--muted:#a8c0c6;--line:rgba(211,241,237,.18);--serif:Georgia,"Times New Roman",serif;--sans:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--ease:cubic-bezier(.2,.75,.25,1)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:88px}
 body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -101,7 +102,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 .future-note{display:block;margin-top:28px;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#66858a}
 .contact{background:radial-gradient(ellipse at 50% 0%,rgba(24,91,111,.6),transparent 60%),#061a27;padding:clamp(88px,10vw,140px) clamp(22px,9vw,144px)}
 .contact-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:9vw;max-width:1300px;margin:auto}
-.contact-intro h2{font-size:clamp(42px,5.4vw,72px);max-width:520px}
+.contact-intro h2{font:400 clamp(42px,5.4vw,72px)/1.02 var(--serif);letter-spacing:-.055em;max-width:520px}
 .contact-intro p{max-width:400px;color:#a9c1c7;font-size:13px;line-height:1.9}
 .contact-aside{margin-top:42px;color:#7fa2ad;font-size:9px;line-height:1.8;letter-spacing:.08em}
 .enquiry-form{border-top:1px solid var(--line);padding-top:28px}
@@ -236,10 +237,10 @@ OCEAN BREEZE
 <path d="M222 183c13 26 17 42 17 68v320" stroke="#a9f0ef" stroke-opacity=".32" stroke-width="3" fill="none"/>
 <rect x="67" y="346" width="166" height="166" fill="#082c40" fill-opacity=".88" stroke="#a0e8e2" stroke-opacity=".72"/>
 <path d="M94 382c16-15 31-15 47 0s31 15 47 0" stroke="#a2e4df" stroke-width="1.3" fill="none"/>
-<text x="150" y="371" fill="#a8e9e2" font-family="Arial,sans-serif" font-size="8" letter-spacing="3" text-anchor="middle">OCEAN BREEZE</text>
+<text x="150" y="371" fill="#a8e9e2" font-family="ui-sans-serif,sans-serif" font-size="8" letter-spacing="3" text-anchor="middle">OCEAN BREEZE</text>
 <text x="150" y="431" fill="#f4ffff" font-family="Georgia,serif" font-size="27" text-anchor="middle">Purified</text>
 <text x="150" y="462" fill="#f4ffff" font-family="Georgia,serif" font-size="27" text-anchor="middle">Water</text>
-<text x="150" y="489" fill="#a8e9e2" font-family="Arial,sans-serif" font-size="7" letter-spacing="2" text-anchor="middle">A CLEARER REFRESH</text>
+<text x="150" y="489" fill="#a8e9e2" font-family="ui-sans-serif,sans-serif" font-size="7" letter-spacing="2" text-anchor="middle">A CLEARER REFRESH</text>
 </svg>
 <div class="bottle-reflection"></div>
 </div>
@@ -257,7 +258,7 @@ OCEAN BREEZE
 <div class="product-visual reveal">
 <svg class="bottle-svg" viewBox="0 0 300 680" role="img" aria-label="Ocean Breeze purified water concept bottle">
 <defs><linearGradient id="glass2" x1="0" x2="1"><stop stop-color="#d9ffff" stop-opacity=".58"/><stop offset=".18" stop-color="#c6f5f4" stop-opacity=".15"/><stop offset=".56" stop-color="#eaffff" stop-opacity=".06"/><stop offset="1" stop-color="#6bc8d3" stop-opacity=".4"/></linearGradient><linearGradient id="water2" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#b7f4ef" stop-opacity=".46"/><stop offset="1" stop-color="#137e9e" stop-opacity=".72"/></linearGradient></defs>
-<path d="M117 39h66v66h-66z" fill="#80c8cb"/><path d="M110 105c0 34-11 43-31 65-16 18-24 39-24 74v326c0 52 24 74 95 74s95-22 95-74V244c0-35-8-56-24-74-20-22-31-31-31-65Z" fill="url(#glass2)" stroke="#d7ffff" stroke-opacity=".74" stroke-width="2.2"/><path d="M57 302c44-10 140 10 186-1v268c0 47-22 66-93 66s-93-19-93-66Z" fill="url(#water2)"/><rect x="67" y="346" width="166" height="166" fill="#082c40" fill-opacity=".88" stroke="#a0e8e2" stroke-opacity=".72"/><text x="150" y="371" fill="#a8e9e2" font-family="Arial" font-size="8" letter-spacing="3" text-anchor="middle">OCEAN BREEZE</text><text x="150" y="431" fill="#fff" font-family="Georgia" font-size="27" text-anchor="middle">Purified</text><text x="150" y="462" fill="#fff" font-family="Georgia" font-size="27" text-anchor="middle">Water</text></svg>
+<path d="M117 39h66v66h-66z" fill="#80c8cb"/><path d="M110 105c0 34-11 43-31 65-16 18-24 39-24 74v326c0 52 24 74 95 74s95-22 95-74V244c0-35-8-56-24-74-20-22-31-31-31-65Z" fill="url(#glass2)" stroke="#d7ffff" stroke-opacity=".74" stroke-width="2.2"/><path d="M57 302c44-10 140 10 186-1v268c0 47-22 66-93 66s-93-19-93-66Z" fill="url(#water2)"/><rect x="67" y="346" width="166" height="166" fill="#082c40" fill-opacity=".88" stroke="#a0e8e2" stroke-opacity=".72"/><text x="150" y="371" fill="#a8e9e2" font-family="ui-sans-serif" font-size="8" letter-spacing="3" text-anchor="middle">OCEAN BREEZE</text><text x="150" y="431" fill="#fff" font-family="Georgia" font-size="27" text-anchor="middle">Purified</text><text x="150" y="462" fill="#fff" font-family="Georgia" font-size="27" text-anchor="middle">Water</text></svg>
 </div>
 <div class="product-copy reveal delay-1"><div class="product-meta">01 / Current focus</div><h3>Everyday,<br>elevated.</h3><p>A focused beginning for Ocean Breeze: purified water presented with a sense of freshness, calm and contemporary character. Bottle formats, specifications, source, certifications, pricing and availability will be published only when confirmed.</p><div class="product-facts"><span>Purified water</span><span>Current range</span></div><a class="button" href="#connect">Ask about the product <span aria-hidden="true">↗</span></a></div>
 </div>
@@ -339,6 +340,8 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname === "/health") return new Response("Ocean Breeze Worker healthy", { headers: { "content-type": "text/plain; charset=utf-8", ...securityHeaders } });
+    if (url.pathname === "/robots.txt") return new Response("User-agent: *\nAllow: /\nSitemap: https://ocean-breeze.officialdawg25.workers.dev/sitemap.xml\n", { headers: { "content-type": "text/plain; charset=utf-8", "cache-control": "public, max-age=3600", ...securityHeaders } });
+    if (url.pathname === "/sitemap.xml") return new Response('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://ocean-breeze.officialdawg25.workers.dev/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url></urlset>', { headers: { "content-type": "application/xml; charset=utf-8", "cache-control": "public, max-age=3600", ...securityHeaders } });
     if (url.pathname === "/api/enquiries") {
       if (request.method !== "POST") return json({ error: "Method not allowed." }, 405);
       const origin = request.headers.get("Origin");
