@@ -238,7 +238,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 .ob-empty-collection{padding:22px;border:1px solid var(--line);font-size:11px;color:var(--muted);line-height:1.8}
 body.ob-product-route .ob-collection{display:none}
 body.ob-admin-mode{background:#eef2ef;color:#152d35;overflow:auto}
-body.ob-admin-mode .site-header,body.ob-admin-mode .mobile-nav,body.ob-admin-mode main,body.ob-admin-mode .footer{display:none!important}
+body.ob-admin-mode .site-header,body.ob-admin-mode .mobile-nav,body.ob-admin-mode>main,body.ob-admin-mode .footer{display:none!important}
 .ob-admin{min-height:100vh;background:#eef2ef;color:#152d35;font-family:var(--sans)}
 .ob-admin-top{height:72px;padding:0 28px;display:flex;align-items:center;justify-content:space-between;background:#071d2b;color:#f2f6f1}
 .ob-admin-brand{font-size:10px;letter-spacing:.2em;font-weight:700}
