@@ -36,7 +36,9 @@
 - The Worker has the Supabase project URL as a plain-text binding and the publishable API key as a Cloudflare secret binding. No service-role key is used.
 - Public form submission has not been end-to-end tested with a valid customer record, to avoid inserting fabricated test enquiries. Browser rendering verified the form and the endpoint is compiled/deployed; a valid live submission still needs owner-led verification.
 - The website's enquiries are stored in Supabase for manual review. Email notifications and an admin inbox are not configured.
-- The live browser rendering service returned page HTML and accessibility-tree data. A visual screenshot was captured by the rendering service, but detailed human visual review across physical devices remains incomplete.
+- Production screenshots were visually reviewed at desktop 1440 × 1000, tablet portrait 768 × 1024 and narrow Android portrait 360 × 800. The layouts retained their hierarchy and the primary CTAs remained visible; tablet CTA wrapping is intentional at that width.
+- Browser automation verified the mobile navigation opens (aria-expanded changes to true), malformed enquiry POSTs return HTTP 400 without creating records, and GET requests to the POST-only endpoint return HTTP 405.
+- A valid customer enquiry was deliberately not submitted as a test, to avoid inserting fabricated customer data. A real owner-led submission remains the final end-to-end check.
 
 ## Production release
 
