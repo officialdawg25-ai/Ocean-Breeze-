@@ -10,6 +10,8 @@ const HTML = String.raw`<!doctype html>
 <meta property="og:description" content="Discover Ocean Breeze purified water. A clearer kind of refreshment.">
 <meta property="og:site_name" content="Ocean Breeze">
 <meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://ocean-breeze.officialdawg25.workers.dev/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Ocean Breeze","url":"https://ocean-breeze.officialdawg25.workers.dev/","description":"A beverage brand currently focused on purified water."}</script>
 <title>Ocean Breeze — Clarity in every moment</title>
 <style>
 :root{color-scheme:dark;--ink:#061a27;--deep:#092b3d;--deep2:#0d3b50;--sea:#14556a;--aqua:#a2e4df;--mist:#d9eeeb;--paper:#f2f6f1;--muted:#a8c0c6;--line:rgba(211,241,237,.18);--serif:Georgia,"Times New Roman",serif;--sans:Arial,Helvetica,sans-serif;--ease:cubic-bezier(.2,.75,.25,1)}
@@ -344,8 +346,12 @@ export default {
       if (!request.headers.get("content-type")?.toLowerCase().includes("application/json")) return json({ error: "Content type must be application/json." }, 415);
       const declaredLength = Number(request.headers.get("content-length") || 0);
       if (declaredLength > 12000) return json({ error: "The message is too large." }, 413);
+      let rawBody;
+      try { rawBody = await request.text(); } catch { return json({ error: "Please check the form and try again." }, 400); }
+      if (rawBody.length > 12000) return json({ error: "The message is too large." }, 413);
       let body;
-      try { body = await request.json(); } catch { return json({ error: "Please check the form and try again." }, 400); }
+      try { body = JSON.parse(rawBody); } catch { return json({ error: "Please check the form and try again." }, 400); }
+      if (!body || typeof body !== "object" || Array.isArray(body)) return json({ error: "Please check the form and try again." }, 400);
       if (body?.company_website) return json({ ok: true }, 201);
       const full_name = typeof body?.full_name === "string" ? body.full_name.trim() : "";
       const email = typeof body?.email === "string" ? body.email.trim() : "";
