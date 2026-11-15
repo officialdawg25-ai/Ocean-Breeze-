@@ -14,6 +14,7 @@ A responsive premium website for Ocean Breeze, a beverage brand currently focuse
 - Required fields: name, email, enquiry type and message; phone is optional.
 - Honeypot, same-origin validation, request-size checks, Worker validation and Postgres constraints.
 - Supabase RLS is enabled. The anonymous role receives INSERT only; it cannot read, update or delete enquiries.
+- Enquiries are stored in Supabase for manual review. No email notification or admin inbox is configured yet.
 - Required Worker bindings: `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY`. The publishable key is designed for public use and is not a service-role credential.
 
 ## Local validation
