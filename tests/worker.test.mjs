@@ -49,3 +49,34 @@ test('Server validates input and returns non-cacheable JSON', () => {
 test('No private Supabase key is embedded in source', () => {
   assert.doesNotMatch(source, /SUPABASE_SERVICE_ROLE_KEY|sb_secret_/);
 });
+
+test('Product exhibition, product detail and admin routes are wired', () => {
+  assert.match(html, /id="ob-stage"/);
+  assert.match(html, /id="ob-product-rail"/);
+  assert.match(html, /id="ob-collection-grid"/);
+  assert.match(html, /id="ob-admin"/);
+  assert.match(html, /id="ob-product-form"/);
+  assert.match(html, /model-viewer/);
+  assert.match(source, /url\.pathname === "\/api\/products"/);
+  assert.match(source, /url\.pathname === "\/api\/experience"/);
+  assert.match(source, /url\.pathname === "\/admin"/);
+  assert.match(source, /url\.pathname\.startsWith\("\/products\/"\)/);
+});
+
+test('Product studio supports real image sequences, 3D models and verified information', () => {
+  assert.match(html, /frame_manifest/);
+  assert.match(html, /model_asset/);
+  assert.match(html, /function setFrame/);
+  assert.match(html, /pointerdown/);
+  assert.match(html, /addEventListener\('wheel'/);
+  assert.match(html, /information_type/);
+  assert.match(html, /background_primary/);
+  assert.match(html, /ocean-breeze-products/);
+});
+
+test('Admin authorisation uses trusted app metadata and not user metadata', () => {
+  assert.match(html, /claims\.app_metadata\.role/);
+  assert.doesNotMatch(html, /user_metadata\.role/);
+  assert.match(source, /SUPABASE_PUBLISHABLE_KEY/);
+  assert.doesNotMatch(source, /SUPABASE_SERVICE_ROLE_KEY|sb_secret_/);
+});
