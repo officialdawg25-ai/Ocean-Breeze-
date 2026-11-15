@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { Script } from 'node:vm';
 
 const source = readFileSync(new URL('../worker.js', import.meta.url), 'utf8');
 const html = source.match(/const HTML = String\.raw\x60([\s\S]*?)\x60;/)?.[1] ?? '';
@@ -79,4 +80,12 @@ test('Admin authorisation uses trusted app metadata and not user metadata', () =
   assert.doesNotMatch(html, /user_metadata\.role/);
   assert.match(source, /SUPABASE_PUBLISHABLE_KEY/);
   assert.doesNotMatch(source, /SUPABASE_SERVICE_ROLE_KEY|sb_secret_/);
+});
+
+test('Inline browser scripts parse without syntax errors', () => {
+  const scripts = [...html.matchAll(/<script(?:\\s[^>]*)?>([\\s\\S]*?)<\\/script>/gi)]
+    .map((match) => match[1])
+    .filter((content) => content.trim().length > 0);
+  assert.ok(scripts.length > 0, 'expected at least one inline browser script');
+  for (const content of scripts) assert.doesNotThrow(() => new Script(content));
 });
